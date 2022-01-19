@@ -1,8 +1,6 @@
 import pygeohash as pgh
 import gzip
 
-from pyparsing import col
-
 
 class UniqueGeoHash:
     def is_file_compressed(self, filename):
@@ -21,13 +19,23 @@ class UniqueGeoHash:
             return self.format_file(f)
 
     def format_file(self, open_file):
-        coords = {'lat': [], 'lng': []}
+        coords = {'lat': [], 'lng': [], 'geohash': []}
         for i, line in enumerate(open_file):
             columns = line.rstrip('\n').split(',')
             if i == 0:
                 lat_index = columns.index('lat')
                 lng_index = columns.index('lng')
             else:
-                coords['lat'].append(columns[lat_index])
-                coords['lng'].append(columns[lng_index])
+                lat_str = columns[lat_index]
+                lng_str = columns[lng_index]
+                precision = len(lat_str.split('.')[1] + lng_str.split('.')[1])
+                lat_float = float(lat_str)
+                lng_float = float(lng_str)
+                coords['lat'].append(lat_float)
+                coords['lng'].append(lng_float)
+                coords['geohash'].append(pgh.encode(
+                    lat_float,
+                    lng_float,
+                    precision=precision
+                ))
         return coords
