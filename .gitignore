@@ -1,2 +1,4 @@
 *env
 test_points.txt
+.vscode
+*.pytest_cache
