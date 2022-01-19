@@ -2,3 +2,7 @@
 test_points.txt
 .vscode
 *.pytest_cache
+workspace.py
+__pycache__/
+test_points_test.txt
+test_points_test.txt.gz
