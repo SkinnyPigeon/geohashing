@@ -9,7 +9,8 @@ def test_knows_if_file_is_compressed():
 
 def test_can_import_compressed_file():
     ugh = UniqueGeoHash()
-    imported_file = ugh.import_compressed_file('test_points_test.txt.gz', 'gz')
+    imported_file = ugh.import_compressed_file(
+        'data/test_points_test.txt.gz', 'gz')
     assert imported_file['lat'] == ['41.37484808',
                                     '41.37438124',
                                     '41.3806658',
