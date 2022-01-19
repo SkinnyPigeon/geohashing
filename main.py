@@ -16,6 +16,10 @@ class UniqueGeoHash:
             with gzip.open(filename, 'rt') as f:
                 return self.format_file(f)
 
+    def import_non_compressed_file(self, filename):
+        with open(filename, 'r') as f:
+            return self.format_file(f)
+
     def format_file(self, open_file):
         coords = {'lat': [], 'lng': []}
         for i, line in enumerate(open_file):
