@@ -1,21 +1,22 @@
 import pygeohash as pgh
 import gzip
 import trie
+import csv
 
 
 class UniqueGeoHash:
-    def is_file_compressed(self, filename):
+    def is_file_compressed(self, filename: str):
         extension = filename.split('.')[-1]
         if extension in ['gz']:
             return extension
         return False
 
-    def import_compressed_file(self, filename, extension):
+    def import_compressed_file(self, filename: str, extension: str):
         if extension == 'gz':
             with gzip.open(filename, 'rt') as f:
                 return self.format_file(f)
 
-    def import_non_compressed_file(self, filename):
+    def import_non_compressed_file(self, filename: str):
         with open(filename, 'r') as f:
             return self.format_file(f)
 
@@ -41,14 +42,12 @@ class UniqueGeoHash:
                 ))
         return coords
 
-    def get_unique_prefexes(self, geohashes):
+    def get_unique_prefexes(self, geohashes: list):
         gup = trie.GenerateUniquePrefixes()
         res = gup.get_shortest_prefixes(geohashes)
-        for r in res:
-            print(r)
         return res
 
-    def create_output(self, filename):
+    def create_output(self, filename: str):
         compressed = self.is_file_compressed(filename)
         if compressed:
             coords = self.import_compressed_file(filename, compressed)
@@ -57,3 +56,19 @@ class UniqueGeoHash:
         prefixes = self.get_unique_prefexes(coords['geohash'])
         coords['unique_prefix'] = prefixes
         return coords
+
+    def format_output(self, output: dict):
+        with open('output.csv', 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(output.keys())
+            writer.writerows(zip(*output.values()))
+
+    def return_output(self):
+        with open('output.csv', 'r') as f:
+            for line in f:
+                print(line.rstrip('\n'))
+
+    def run(self, filename: str):
+        output = self.create_output(filename)
+        self.format_output(output)
+        self.return_output()
