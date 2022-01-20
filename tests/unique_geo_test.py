@@ -44,3 +44,22 @@ def test_can_import_non_compressed_file():
                                  'sp3e25yx4z8mwv4r',
                                  'sp3e3m07f70ns0',
                                  'sp3e3nc9qnh1u']
+
+
+def test_prefixes_list_should_be_same_length():
+    ugh = UniqueGeoHash()
+    coords = ugh.import_compressed_file(
+        'data/test_points.txt.gz', 'gz'
+    )
+    prefixes = ugh.get_unique_prefexes(coords['geohash'])
+    assert len(coords['geohash']) == len(prefixes)
+
+
+def test_prefixes_should_be_same_order():
+    ugh = UniqueGeoHash()
+    expected = ['sp3e2h', 'sp3e25', 'sp3e3m', 'sp3e3n']
+    coords = ugh.import_non_compressed_file(
+        'data/test_points_test.txt'
+    )
+    prefixes = ugh.get_unique_prefexes(coords['geohash'])
+    assert expected == prefixes

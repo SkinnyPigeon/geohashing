@@ -1,5 +1,6 @@
 import pygeohash as pgh
 import gzip
+import trie
 
 
 class UniqueGeoHash:
@@ -39,3 +40,10 @@ class UniqueGeoHash:
                     precision=precision
                 ))
         return coords
+
+    def get_unique_prefexes(self, geohashes):
+        gup = trie.GenerateUniquePrefixes()
+        res = gup.get_shortest_prefixes(geohashes)
+        for r in res:
+            print(r)
+        return res
