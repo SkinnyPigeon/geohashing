@@ -72,3 +72,8 @@ class UniqueGeoHash:
         output = self.create_output(filename)
         self.format_output(output)
         self.return_output()
+
+
+if __name__ == '__main__':
+    ugh = UniqueGeoHash()
+    ugh.run('data/test_points.txt.gz')

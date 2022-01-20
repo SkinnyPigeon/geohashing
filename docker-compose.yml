@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  python:
+    container_name: geohash
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: geohash_image
+    stdin_open: true
+    tty: true
+    
