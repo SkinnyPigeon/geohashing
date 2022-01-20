@@ -1,6 +1,5 @@
 FROM ubuntu:bionic
 COPY /code /code/
-COPY requirements.txt /
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=nonintercative
@@ -13,6 +12,6 @@ RUN \
   python3.9 -m pip install --upgrade setuptools && \
   python3.9 -m pip install --upgrade pip && \
   python3.9 -m pip install --upgrade distlib && \
-  python3.9 -m pip install -r requirements.txt
+  python3.9 -m pip install -r /code/requirements.txt
 WORKDIR /code
 CMD ["/bin/bash"]
