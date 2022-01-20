@@ -44,10 +44,3 @@ def test_can_import_non_compressed_file():
                                  'sp3e25yx4z8mwv4r',
                                  'sp3e3m07f70ns0',
                                  'sp3e3nc9qnh1u']
-
-
-def test_ugh_prefix_list_is_same_length():
-    ugh = UniqueGeoHash()
-    coords = ugh.import_compressed_file('data/test_points.txt.gz', 'gz')
-    ugh_prefixs = ugh.shortest_geohash_prefix(coords['geohash'])
-    assert len(coords['geohash']) == len(ugh_prefixs)

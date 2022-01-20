@@ -39,12 +39,3 @@ class UniqueGeoHash:
                     precision=precision
                 ))
         return coords
-
-    def shortest_geohash_prefix(self, geohashes):
-        return geohashes
-
-
-ugh = UniqueGeoHash()
-coords = ugh.import_compressed_file('data/test_points_test.txt.gz', 'gz')
-shashes = ugh.shortest_geohash_prefix(coords['geohash'])
-print(shashes)
