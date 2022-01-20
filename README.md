@@ -13,6 +13,8 @@ This is where the bulk of the operating and formatting logic lives. A feature wo
 
 Speaking of which, I have avoided using DataFrames to store the data. From experience, I find them to be quite slow to work with, so use alternatives wherever possible. As such, I have stuck to dictionaries and lists. These are both structures I enjoy working with and are easy to test.
 
+Throughout the process, the order of the dataset is maintained and duplicates are kept. The duplicate sets of lat and lng pairs has meant that there are some *unique prefixes* which are not unique. As was highlighted however, the use case for this data set is not clear and so effort has been made to keep the data as was provided. At this scale of data, I do not believe there is a massive hit to performance and am happy with the speed at which the process completes.
+
 ### trie&#46;py
 This is where the clever stuff happens and I must admit I had some serious searching to find something that was close enough for the requirements. The Trie data structure itself is quite fascinating and I am quite glad I got to spend some time wrestling with them today.
 
