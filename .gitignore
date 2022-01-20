@@ -4,3 +4,4 @@ test_points.txt
 *.pytest_cache
 workspace.py
 __pycache__/
+*.DS_Store
