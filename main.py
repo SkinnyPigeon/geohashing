@@ -47,3 +47,13 @@ class UniqueGeoHash:
         for r in res:
             print(r)
         return res
+
+    def create_output(self, filename):
+        compressed = self.is_file_compressed(filename)
+        if compressed:
+            coords = self.import_compressed_file(filename, compressed)
+        else:
+            coords = self.import_non_compressed_file(filename)
+        prefixes = self.get_unique_prefexes(coords['geohash'])
+        coords['unique_prefix'] = prefixes
+        return coords
