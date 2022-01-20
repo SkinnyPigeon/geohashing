@@ -20,29 +20,31 @@ class UniqueGeoHash:
 
     def format_file(self, open_file):
         coords = {'lat': [], 'lng': [], 'geohash': []}
-        coords_set = set()
         for i, line in enumerate(open_file):
             columns = line.rstrip('\n').split(',')
             if i == 0:
                 lat_index = columns.index('lat')
                 lng_index = columns.index('lng')
             else:
-                coords_set.add(line)
-        for line in coords_set:
-            columns = line.rstrip('\n').split(',')
-            lat_str = columns[lat_index]
-            lng_str = columns[lng_index]
-            precision = len(lat_str.split('.')[1] + lng_str.split('.')[1])
-            lat_float = float(lat_str)
-            lng_float = float(lng_str)
-            coords['lat'].append(lat_float)
-            coords['lng'].append(lng_float)
-            coords['geohash'].append(pgh.encode(
-                lat_float,
-                lng_float,
-                precision=precision
-            ))
+                lat_str = columns[lat_index]
+                lng_str = columns[lng_index]
+                precision = len(lat_str.split('.')[1] + lng_str.split('.')[1])
+                lat_float = float(lat_str)
+                lng_float = float(lng_str)
+                coords['lat'].append(lat_float)
+                coords['lng'].append(lng_float)
+                coords['geohash'].append(pgh.encode(
+                    lat_float,
+                    lng_float,
+                    precision=precision
+                ))
         return coords
 
     def shortest_geohash_prefix(self, geohashes):
-        return list(dict.fromkeys(geohashes))
+        return geohashes
+
+
+ugh = UniqueGeoHash()
+coords = ugh.import_compressed_file('data/test_points_test.txt.gz', 'gz')
+shashes = ugh.shortest_geohash_prefix(coords['geohash'])
+print(shashes)
