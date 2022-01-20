@@ -16,9 +16,9 @@ Speaking of which, I have avoided using DataFrames to store the data. From exper
 ### trie&#46;py
 This is where the clever stuff happens and I must admit I had some serious searching to find something that was close enough for the requirements. The Trie data structure itself is quite fascinating and I am quite glad I got to spend some time wrestling with them today.
 
-Once again, dictionaries are the heroes. As the first geohash is inserted into the Trie structure, the individual characters of the word is used to create a nested dictionary with each character of the geohash acting as a key within the next layer of the structure.
+Once again, dictionaries are the heroes. As the first geohash is inserted into the Trie structure, the individual characters of the word are used to create a nested dictionary with each character of the geohash acting as a key within the next layer of the structure.
 
-When the next geohash is added, the process begins again. If it starts with the same letter as the previous geohash, the character's *frequency count* is incremented and the process will enter into the first inner layer of the existing Trie structure. If there is a difference in characters at a given position, a new key will be added to that layer of the dictionary and a new *branch* will be started from this point. This process is then repeated for every word until there is a massively nested dictionary containing all of the available paths that are available for a given geohash.
+When the next geohash is added, the process begins again. If it starts with the same letter as the previous geohash, the character's *frequency count* is incremented and the process will enter into the first inner layer of the existing Trie structure. If there is a difference in characters at a given position, a new key will be added to that layer of the dictionary and a new *branch* will be started from this point. This process is then repeated for every word until there is a massively nested dictionary containing all of the available paths that are available the given geohashes.
 
 For the retrieval of the prefix, the process is essentially run again. However, this time the function is looking for when the frequency count is equal to 1. This tells the function that a unique path has been found and to return the value. Importantly for our purposes this function also returns a value if no unique value is found. Our data set has duplicates so there are geohashes which do no have unique prefixes.
 
@@ -36,7 +36,7 @@ Now change into the directory:
 cd python-test-euan-blackledge
 ```
 
-To test the code and see the output, I have 2 options for you... :)
+To test the code and see the output, I have 2 options for you... 😀
 
 ***
 ## Docker
