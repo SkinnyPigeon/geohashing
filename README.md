@@ -35,7 +35,7 @@ git clone git@github.com:SkinnyPigeon/geohashing.git
 Now change into the directory:
 
 ```bash
-cd python-test-euan-blackledge
+cd geohashing
 ```
 
 To test the code and see the output, I have 2 options for you... 😀
