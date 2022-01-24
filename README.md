@@ -29,7 +29,7 @@ For the retrieval of the prefix, the process is essentially run again. However, 
 From the directory you wish to download the code to, run:
 
 ```bash
-git clone git@github.com:StuartHiring/python-test-euan-blackledge.git
+git clone git@github.com:SkinnyPigeon/geohashing.git
 ```
 
 Now change into the directory:
