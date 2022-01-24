@@ -99,7 +99,7 @@ which python3
 This should now show the Python's path as something like:
 
 ```bash
-/Users/username/code/python-test-euan-blackledge/code/venv/bin/python3
+/Users/username/code/geohashing/code/venv/bin/python3
 ```
 If so, you can run:
 
